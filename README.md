@@ -1,10 +1,37 @@
 # spring-mvc-portlet
 Basic spring mvc portlet in liferay
 
-* Unlike a single controller for all actions in a portlet,a spring mvc portlet consists of 
+- Unlike a single controller for all actions in a generic portlet,a spring mvc portlet consists of 
 
-1. DispatcherPortlet,which acts as front controller,delegating requests to
-2. Mapping Handler which subsequently delegates it to other controllers,based on the request mapping or directly,
-3. View Resolvers,which map to the subsequent 
-4. View
+	1. **DispatcherPortlet**,which acts as front controller,delegating requests to,
+	2. **Mapping Handler** which subsequently delegates it to other controllers,based on the request mapping or directly to,
+	3. **View Resolvers**,which map to the subsequent 
+	4. **View**
+
+- Spring framework provides usage of Forms,data binding and Validation framework
+- Provides exception resolvers and interceptors
+
+# Configuring a spring portlet
+
+- Configuration in web.xml
+	- Set portlet application context used by all portlets within a web app
+	- Set ContextLoaderListener to load the parent context
+	- Set contextConfigLocation for listing of bean definitions
+	- Set ViewRendererServlet which acts as bridge between Servlet and Portlet requests
+- Configuration in portlet.xml
+	- Front Controller as DispatacherPortlet
+	- Portlet's own contextConfigLocation
+	- Bean definitions for a certain portlet are defined per portlet application context file while
+	  shared between portlets should in a parent file
+ - 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  References:
+	  https://wiki.jasig.org/download/attachments/6619258/spring-portlet-mvc-tutorial_v1.pdf
 
