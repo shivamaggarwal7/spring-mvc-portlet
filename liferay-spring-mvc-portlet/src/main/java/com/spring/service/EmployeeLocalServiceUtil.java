@@ -265,6 +265,12 @@ public class EmployeeLocalServiceUtil {
         return getService().createEmployee(emp);
     }
 
+    public static com.spring.model.Employee updateEmployee(
+        com.spring.beans.Employee emp)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().updateEmployee(emp);
+    }
+
     public static void clearService() {
         _service = null;
     }

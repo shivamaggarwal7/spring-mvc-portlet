@@ -30,5 +30,15 @@ public class EmployeeLocalServiceImpl extends EmployeeLocalServiceBaseImpl {
 		
 		return employeePersistence.update(employee);
 	}
+	
+	public Employee updateEmployee(com.spring.beans.Employee emp) throws SystemException
+	{
+		Employee employee= employeeLocalService.fetchEmployee(emp.getEmpId());
+		
+		employee.setEmpName(emp.getEmpName());
+		employee.setGrade(emp.getGrade());
+		
+		return employeePersistence.update(employee);
+	}
 }
      

@@ -46,6 +46,8 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
     private String[] _methodParameterTypes17;
     private String _methodName19;
     private String[] _methodParameterTypes19;
+    private String _methodName20;
+    private String[] _methodParameterTypes20;
 
     public EmployeeLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -137,6 +139,10 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
         _methodName19 = "createEmployee";
 
         _methodParameterTypes19 = new String[] { "com.spring.beans.Employee" };
+
+        _methodName20 = "updateEmployee";
+
+        _methodParameterTypes20 = new String[] { "com.spring.beans.Employee" };
     }
 
     @Override
@@ -657,6 +663,34 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName19,
                     _methodParameterTypes19,
+                    new Object[] { ClpSerializer.translateInput(emp) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.spring.model.Employee) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.spring.model.Employee updateEmployee(
+        com.spring.beans.Employee emp)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName20,
+                    _methodParameterTypes20,
                     new Object[] { ClpSerializer.translateInput(emp) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);

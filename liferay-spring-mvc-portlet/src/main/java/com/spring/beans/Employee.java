@@ -11,7 +11,7 @@ public class Employee implements Comparable<Employee> {
 	
 	
 	@NotNull
-	private Long empId;
+	private Long empId=(long)0;
 	
 	@NotNull
 	@NotEmpty
@@ -88,11 +88,11 @@ public class Employee implements Comparable<Employee> {
 		return true;
 	}
 
-	public Employee(Long empId, String empName) {
+	public Employee(Long empId, String empName,String grade) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
-		this.grade = "Assoc";
+		this.grade = grade;
 	}
 
 	@Override

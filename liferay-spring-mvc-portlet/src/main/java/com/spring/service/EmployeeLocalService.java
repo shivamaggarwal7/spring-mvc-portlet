@@ -234,4 +234,8 @@ public interface EmployeeLocalService extends BaseLocalService,
     public com.spring.model.Employee createEmployee(
         com.spring.beans.Employee emp)
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    public com.spring.model.Employee updateEmployee(
+        com.spring.beans.Employee emp)
+        throws com.liferay.portal.kernel.exception.SystemException;
 }
