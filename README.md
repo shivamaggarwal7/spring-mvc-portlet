@@ -27,8 +27,8 @@ Basic spring mvc portlet in liferay
  
 # Key takeaways from Spring mvc liferay portlet
  	
- -Namespacing of params should be disabled in liferay portlet using liferay-portlet.xml
-   -'requires-namespaced-parameters' should be set as false
+ - Namespacing of params should be disabled in liferay portlet using liferay-portlet.xml
+   - 'requires-namespaced-parameters' should be set as false
  -Spring uses Validator framework to enable field level validations using Bean validation
 	 from JSR 303,whose implementation is provided by Hibernate
  - Due to a bug,hibernate Validator can reference hashCode method on a null object,hence that
