@@ -24,6 +24,19 @@ Basic spring mvc portlet in liferay
 	  shared between portlets should in a parent file
  - The DispatcherPortlet uses HandlerMappings to determine which Controller should handle each PortletRequest.
  -  A DispatcherPortlet can use multiple HandlerMappings
+ 
+ # Key takeaways from Spring mvc liferay portlet
+ 	
+ 	-Namespacing of params should be disabled in liferay portlet using liferay-portlet.xml
+ 		-'requires-namespaced-parameters' should be set as false
+	-Spring uses Validator framework to enable field level validations using Bean validation
+	 from JSR 303,whose implementation is provided by Hibernate
+    - Due to a bug,hibernate Validator can reference hashCode method on a null object,hence that
+      needs to be handled in hashCode implementation of the bean class
+    - Mapping of bean class used for user interaction and actual model class should be done appropriately
+    	-In case of similar names,make sure the correct import is done
+ 
+ 
 	  
 	  
 	  

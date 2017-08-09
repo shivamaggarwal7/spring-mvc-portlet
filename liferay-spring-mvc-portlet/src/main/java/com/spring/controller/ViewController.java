@@ -74,7 +74,7 @@ public class ViewController {
 	@RenderMapping(params = "action=editEmployeeView")
 	public ModelAndView editEmployee(RenderRequest req, RenderResponse res, Model model) {
 
-		long empId = ParamUtil.getLong(req,"empId");
+		long empId = ParamUtil.getLong(req, "empId");
 		ModelAndView modelAndView = new ModelAndView();
 
 		modelAndView.setViewName("addEmployee");
@@ -91,39 +91,32 @@ public class ViewController {
 
 	}
 
-	@ActionMapping	
-		public void createEmp(@ModelAttribute("empBean") @Valid Employee emp, BindingResult bindingResult,ActionRequest req,ActionResponse res)
-	{
-		if(bindingResult.hasErrors())
-		{
-			
-		res.setRenderParameter("action", "addEmployeeView");	
-		}
-		else
-		{
-			if(emp.getEmpId()==0)
-			{
-			
-			try {
-				EmployeeLocalServiceUtil.createEmployee(emp);
-			} catch (SystemException e) {
-			 log.info("Something went bad while persisting entity");	
-			}
-		  }
-			else
-			{
-				
+	@ActionMapping
+	public void createEmp(@ModelAttribute("empBean") @Valid Employee emp, BindingResult bindingResult,
+			ActionRequest req, ActionResponse res) {
+		if (bindingResult.hasErrors()) {
+
+			res.setRenderParameter("action", "addEmployeeView");
+		} else {
+			if (emp.getEmpId() == 0) {
+
+				try {
+					EmployeeLocalServiceUtil.createEmployee(emp);
+				} catch (SystemException e) {
+					log.info("Something went bad while persisting entity");
+				}
+			} else {
+
 				try {
 					EmployeeLocalServiceUtil.updateEmployee(emp);
 				} catch (SystemException e) {
-					
+
 					log.info("Something went bad while persisting entity");
 				}
 			}
-			
-				
+
 		}
-       
+
 	}
 
 }

@@ -13,12 +13,12 @@ public class Employee implements Comparable<Employee> {
 	@NotNull
 	private Long empId=(long)0;
 	
-	@NotNull
+	@NotNull(message="{NotNull.empname}")
 	@NotEmpty
-	@Pattern(regexp="[\\p{IsAlphabetic}\\s]*")
+	@Pattern(regexp="[\\p{IsAlphabetic}\\s]*" ,message="{Pattern.empname}")
 	private String empName;
 	
-	@NotNull
+	@NotNull(message="No empty stuff Plz")
 	@NotEmpty
 	@Pattern(regexp="[\\p{IsAlphabetic}\\s]*")
 	private String grade;
