@@ -259,6 +259,12 @@ public class EmployeeLocalServiceUtil {
         return getService().invokeMethod(name, parameterTypes, arguments);
     }
 
+    public static com.spring.model.Employee createEmployee(
+        com.spring.beans.Employee emp)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().createEmployee(emp);
+    }
+
     public static void clearService() {
         _service = null;
     }

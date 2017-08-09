@@ -1,5 +1,7 @@
 package com.spring.service.impl;
 
+import com.liferay.portal.kernel.exception.SystemException;
+import com.spring.model.Employee;
 import com.spring.service.base.EmployeeLocalServiceBaseImpl;
 
 /**
@@ -17,9 +19,16 @@ import com.spring.service.base.EmployeeLocalServiceBaseImpl;
  * @see com.spring.service.EmployeeLocalServiceUtil
  */
 public class EmployeeLocalServiceImpl extends EmployeeLocalServiceBaseImpl {
-    /*
-     * NOTE FOR DEVELOPERS:
-     *
-     * Never reference this interface directly. Always use {@link com.spring.service.EmployeeLocalServiceUtil} to access the employee local service.
-     */
+    
+	public Employee createEmployee(com.spring.beans.Employee emp) throws SystemException
+	{
+		long empId =counterLocalService.increment();
+		
+		Employee employee= employeePersistence.create(empId);
+		employee.setEmpName(emp.getEmpName());
+		employee.setGrade(emp.getGrade());
+		
+		return employeePersistence.update(employee);
+	}
 }
+     

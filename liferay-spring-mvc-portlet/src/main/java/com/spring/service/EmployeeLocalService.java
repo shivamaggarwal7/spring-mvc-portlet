@@ -230,4 +230,8 @@ public interface EmployeeLocalService extends BaseLocalService,
     public java.lang.Object invokeMethod(java.lang.String name,
         java.lang.String[] parameterTypes, java.lang.Object[] arguments)
         throws java.lang.Throwable;
+
+    public com.spring.model.Employee createEmployee(
+        com.spring.beans.Employee emp)
+        throws com.liferay.portal.kernel.exception.SystemException;
 }

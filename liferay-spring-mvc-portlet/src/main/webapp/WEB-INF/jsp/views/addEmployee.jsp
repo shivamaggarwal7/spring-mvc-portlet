@@ -1,8 +1,4 @@
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-<portlet:defineObjects />
+<%@ include file="/html/init.jsp" %>
 
 <portlet:renderURL var="listContactsURL">
 </portlet:renderURL>
@@ -13,13 +9,13 @@
 
 <form:form id="empForm" modelAttribute="empBean"  action="${createEmpURL}" method="POST" cssClass="form-horizontal">
 	
-    <div class="control-group">
+    <!-- <div class="control-group">
         <label class="control-label" for="empId">Employee Id</label>
-        <div class="controls">
-            <form:input type="text" id="empId" path="empId" />
-             <form:errors path="empId" cssClass="text-error" />
+        <div class="controls">-->
+           <form:input type="hidden" id="empId" path="empId" />
+          <%--    <form:errors path="empId" cssClass="text-error" />
         </div>
-    </div>
+    </div> --%>
     <div class="control-group">
         <label class="control-label" for="empName">Employee Name</label>
         <div class="controls">
@@ -36,9 +32,14 @@
     </div>
     <div class="control-group">
         <div class="controls">
+             <c:choose> 
+			  <c:when test="${empBean.empId == 0}">
                 <input id="validateNewEmployeeButton" class="btn btn-primary" type="submit" value="Create"/>
-            
+			 </c:when>
+            <c:otherwise>
                 <input id="validateUpdateContactButton" class="btn btn-primary" type="submit" value="Update"/>
+            </c:otherwise>    
+            </c:choose>
             
             <a href="${listContactsURL}" class="btn">Cancel</a>
         </div>

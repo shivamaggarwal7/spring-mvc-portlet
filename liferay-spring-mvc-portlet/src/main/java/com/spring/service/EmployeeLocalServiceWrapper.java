@@ -269,6 +269,13 @@ public class EmployeeLocalServiceWrapper implements EmployeeLocalService,
             arguments);
     }
 
+    @Override
+    public com.spring.model.Employee createEmployee(
+        com.spring.beans.Employee emp)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _employeeLocalService.createEmployee(emp);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */

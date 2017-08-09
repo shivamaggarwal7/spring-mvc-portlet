@@ -393,7 +393,7 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
     }
 
     @Override
-    public int compareTo(Employee employee) {
+    public int compareTo(com.spring.model.Employee employee) {
         return _employee.compareTo(employee);
     }
 
@@ -403,17 +403,17 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
     }
 
     @Override
-    public com.liferay.portal.model.CacheModel<Employee> toCacheModel() {
+    public com.liferay.portal.model.CacheModel<com.spring.model.Employee> toCacheModel() {
         return _employee.toCacheModel();
     }
 
     @Override
-    public Employee toEscapedModel() {
+    public com.spring.model.Employee toEscapedModel() {
         return new EmployeeWrapper(_employee.toEscapedModel());
     }
 
     @Override
-    public Employee toUnescapedModel() {
+    public com.spring.model.Employee toUnescapedModel() {
         return new EmployeeWrapper(_employee.toUnescapedModel());
     }
 

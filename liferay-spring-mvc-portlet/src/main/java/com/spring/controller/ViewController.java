@@ -1,5 +1,8 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.RenderRequest;
@@ -15,11 +18,14 @@ import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.spring.beans.Employee;
+import com.spring.service.EmployeeLocalServiceUtil;
 
 @Controller
 @RequestMapping("VIEW")
@@ -33,18 +39,23 @@ public class ViewController {
 	@RenderMapping
 	public ModelAndView home(RenderRequest req, RenderResponse res, Model model) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay) req.getAttribute(WebKeys.THEME_DISPLAY);
-
-		log.info(themeDisplay.getUser());
+		List<com.spring.model.Employee> empList=new ArrayList<>();
+		try {
+			empList= EmployeeLocalServiceUtil.getEmployees(0, 5);
+		} catch (SystemException e) {
+			log.info("Something went bad while fetching entities");
+		}
+		
 		ModelAndView modelAndView = new ModelAndView();
 
 	    modelAndView.setViewName("view");
+	    modelAndView.addObject("empList", empList);
 	  
 	    return modelAndView;
 	    
 	}
 	
-	@RenderMapping(params= "action=addEmployee")
+	@RenderMapping(params= "action=addEmployeeView")
 	public ModelAndView addEmployee(RenderRequest req, RenderResponse res, Model model) {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) req.getAttribute(WebKeys.THEME_DISPLAY);
@@ -53,7 +64,7 @@ public class ViewController {
 		ModelAndView modelAndView = new ModelAndView();
 
 	    modelAndView.setViewName("addEmployee");
-	    modelAndView.addObject("empBean",new Employee((long)5567, "Shivam"));
+	    modelAndView.addObject("empBean",new Employee((long)0, "Shivam"));
 	  
 	    return modelAndView;
 	    
@@ -65,13 +76,16 @@ public class ViewController {
 		if(bindingResult.hasErrors())
 		{
 			
-		res.setRenderParameter("action", "addEmployee");	
+		res.setRenderParameter("action", "addEmployeeView");	
 		}
 		else
 		{
-			 System.out.println(bindingResult.hasErrors());
-				
-			System.out.println("------------->"+emp);
+			
+			try {
+				EmployeeLocalServiceUtil.createEmployee(emp);
+			} catch (SystemException e) {
+			 log.info("Something went bad while persisting entity");	
+			} 
 				
 		}
        

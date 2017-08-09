@@ -26,6 +26,6 @@
 
 		<column name="empName" type="String" />
 		<column name="grade" type="String" />
-
+		
 		</entity>
 </service-builder>

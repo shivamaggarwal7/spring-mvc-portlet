@@ -45,6 +45,8 @@ public class EmployeeLocalServiceClpInvoker {
     private String[] _methodParameterTypes32;
     private String _methodName33;
     private String[] _methodParameterTypes33;
+    private String _methodName38;
+    private String[] _methodParameterTypes38;
 
     public EmployeeLocalServiceClpInvoker() {
         _methodName0 = "addEmployee";
@@ -130,6 +132,10 @@ public class EmployeeLocalServiceClpInvoker {
         _methodName33 = "setBeanIdentifier";
 
         _methodParameterTypes33 = new String[] { "java.lang.String" };
+
+        _methodName38 = "createEmployee";
+
+        _methodParameterTypes38 = new String[] { "com.spring.beans.Employee" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -231,6 +237,11 @@ public class EmployeeLocalServiceClpInvoker {
             EmployeeLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
+        }
+
+        if (_methodName38.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
+            return EmployeeLocalServiceUtil.createEmployee((com.spring.beans.Employee) arguments[0]);
         }
 
         throw new UnsupportedOperationException();

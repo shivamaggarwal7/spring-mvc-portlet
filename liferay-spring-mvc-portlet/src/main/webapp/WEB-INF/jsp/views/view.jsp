@@ -1,11 +1,10 @@
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-<portlet:defineObjects />
+<%@ include file="/html/init.jsp" %>
 
 <portlet:renderURL var="addEmp">
-<portlet:param name="action" value="addEmployee"/>
+<portlet:param name="action" value="addEmployeeView"/>
 </portlet:renderURL>
 
+<c:if test="${not empty empList}">
+List is there ${empList}
+</c:if><br>
 <a href="${addEmp}">Add Employee</a>
