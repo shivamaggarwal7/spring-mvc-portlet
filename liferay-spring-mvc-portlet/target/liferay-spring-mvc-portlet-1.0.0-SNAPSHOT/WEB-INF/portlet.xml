@@ -7,7 +7,7 @@
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/spring-context/portlet/liferay-spring-mvc-portlet-portlet.xml</value>
+			<value>/WEB-INF/spring-context/portlet/spring-mvc-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

@@ -12,8 +12,36 @@
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="contentType" value="text/html;charset=UTF-8" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="prefix" value="/WEB-INF/jsp/views/" />
 		<property name="suffix" value=".jsp" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
+	
+	  <!-- Validators activation -->
+  <bean id="annotationMethodHandlerAdapter"
+        class="org.springframework.web.portlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="webBindingInitializer">
+      <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+        <property name="validator">
+          <ref bean="validator"/>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="validator"
+        class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+  <!-- Resource Bundles -->
+  <bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="defaultEncoding" value="UTF-8"/>
+    <property name="cacheSeconds" value="7200"/>
+    <property name="basenames">
+      <value>classpath:Language</value>
+    </property>
+  </bean>
 </beans>
+
+
+
