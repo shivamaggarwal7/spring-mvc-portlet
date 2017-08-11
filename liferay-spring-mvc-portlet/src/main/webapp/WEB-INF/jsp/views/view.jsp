@@ -10,6 +10,7 @@
 <a href="${addEmp}">Add Employee</a>
 
 <%
+List<Employee> empList ;
 int count= EmployeeLocalServiceUtil.getEmployeesCount();
 PortletURL iteratorURL = renderResponse.createRenderURL();
 iteratorURL.setParameter("jspPage", "/WEB-INF/jsp/views/view.jsp");
@@ -18,7 +19,11 @@ iteratorURL.setParameter("jspPage", "/WEB-INF/jsp/views/view.jsp");
 <lui:search-container total="<%=count %>"
  delta="4" emptyResultsMessage="Sorry. There are no items to display." 
 iteratorURL="<%=iteratorURL %>">
-<lui:search-container-results total="<%=count%>" results='<%=ListUtil.subList((List<Employee>)renderRequest.getAttribute("empList"), searchContainer.getStart(), searchContainer.getEnd())%>'/>
+<%
+empList=EmployeeLocalServiceUtil.getEmployees(searchContainer.getStart(), searchContainer.getEnd());
+%>
+
+<lui:search-container-results total="<%=count%>" results='<%=empList%>'/>
 
 <lui:search-container-row className="Employee" modelVar="emp" >
 

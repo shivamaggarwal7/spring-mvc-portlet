@@ -1,14 +1,12 @@
 package com.spring.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +16,6 @@ import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -34,23 +31,15 @@ public class ViewController {
 
 	private static final Log log = LogFactoryUtil.getLog(ViewController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Autowired
+	Employee employee;
+
 	@RenderMapping
 	public ModelAndView home(RenderRequest req, RenderResponse res, Model model) {
-
-		List<com.spring.model.Employee> empList = new ArrayList<>();
-		try {
-			empList = EmployeeLocalServiceUtil.getEmployees(0, 5);
-		} catch (SystemException e) {
-			log.info("Something went bad while fetching entities");
-		}
 
 		ModelAndView modelAndView = new ModelAndView();
 
 		modelAndView.setViewName("view");
-		modelAndView.addObject("empList", empList);
 
 		return modelAndView;
 
@@ -65,7 +54,7 @@ public class ViewController {
 		ModelAndView modelAndView = new ModelAndView();
 
 		modelAndView.setViewName("addEmployee");
-		modelAndView.addObject("empBean", new Employee());
+		modelAndView.addObject("empBean", employee);
 
 		return modelAndView;
 
@@ -82,8 +71,8 @@ public class ViewController {
 		try {
 			emp = EmployeeLocalServiceUtil.fetchEmployee(empId);
 		} catch (SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			log.info("No employee for this user id");
 		}
 		modelAndView.addObject("empBean", new Employee(empId, emp.getEmpName(), emp.getGrade()));
 

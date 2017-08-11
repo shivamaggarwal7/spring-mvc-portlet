@@ -1,24 +1,24 @@
 package com.spring.beans;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Employee implements Comparable<Employee> {
 	
 	
 	@NotNull
-	private Long empId=(long)0;
+	private Long empId=0L;
 	
-	@NotNull(message="{NotNull.empname}")
+	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[\\p{IsAlphabetic}\\s]*" ,message="{Pattern.empname}")
 	private String empName;
 	
-	@NotNull(message="No empty stuff Plz")
+	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[\\p{IsAlphabetic}\\s]*")
 	private String grade;

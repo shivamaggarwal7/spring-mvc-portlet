@@ -8,5 +8,4 @@
 >
 	<context:component-scan base-package="com.spring.**" />
 	
-	<!-- <bean id="empBean" class="com.spring.beans.Employee"/> -->
-</beans>
+	</beans>
