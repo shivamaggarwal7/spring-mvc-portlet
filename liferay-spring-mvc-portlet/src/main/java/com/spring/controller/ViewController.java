@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.spring.InvalidDateException;
 import com.spring.beans.Employee;
 import com.spring.service.EmployeeLocalServiceUtil;
 
@@ -98,9 +99,14 @@ public class ViewController {
 
 				try {
 					EmployeeLocalServiceUtil.updateEmployee(emp);
-				} catch (SystemException e) {
-
-					log.info("Something went bad while persisting entity");
+				} catch (SystemException | InvalidDateException e) {
+					 if(e instanceof SystemException)
+					 {
+						 log.info("Something went bad while persisting entity");
+					 }
+					 else
+                     log.info(e.getMessage()); 
+					
 				}
 			}
 

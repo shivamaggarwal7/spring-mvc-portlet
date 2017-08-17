@@ -685,7 +685,8 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
     @Override
     public com.spring.model.Employee updateEmployee(
         com.spring.beans.Employee emp)
-        throws com.liferay.portal.kernel.exception.SystemException {
+        throws com.liferay.portal.kernel.exception.SystemException,
+            com.spring.InvalidDateException {
         Object returnObj = null;
 
         try {
@@ -697,6 +698,10 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
 
             if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
                 throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof com.spring.InvalidDateException) {
+                throw (com.spring.InvalidDateException) t;
             }
 
             if (t instanceof RuntimeException) {

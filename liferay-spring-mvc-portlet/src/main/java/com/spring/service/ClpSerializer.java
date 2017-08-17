@@ -212,6 +212,10 @@ public class ClpSerializer {
             return new SystemException();
         }
 
+        if (className.equals("com.spring.InvalidDateException")) {
+            return new com.spring.InvalidDateException();
+        }
+
         if (className.equals("com.spring.NoSuchEmployeeException")) {
             return new com.spring.NoSuchEmployeeException();
         }

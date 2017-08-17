@@ -267,7 +267,8 @@ public class EmployeeLocalServiceUtil {
 
     public static com.spring.model.Employee updateEmployee(
         com.spring.beans.Employee emp)
-        throws com.liferay.portal.kernel.exception.SystemException {
+        throws com.liferay.portal.kernel.exception.SystemException,
+            com.spring.InvalidDateException {
         return getService().updateEmployee(emp);
     }
 

@@ -1,6 +1,11 @@
 package com.spring.service.impl;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+
 import com.liferay.portal.kernel.exception.SystemException;
+import com.spring.InvalidDateException;
 import com.spring.model.Employee;
 import com.spring.service.base.EmployeeLocalServiceBaseImpl;
 
@@ -27,16 +32,25 @@ public class EmployeeLocalServiceImpl extends EmployeeLocalServiceBaseImpl {
 		Employee employee= employeePersistence.create(empId);
 		employee.setEmpName(emp.getEmpName());
 		employee.setGrade(emp.getGrade());
+		employee.setCreateDate(new Date());
 		
 		return employeePersistence.update(employee);
 	}
 	
-	public Employee updateEmployee(com.spring.beans.Employee emp) throws SystemException
+	public Employee updateEmployee(com.spring.beans.Employee emp) throws SystemException, InvalidDateException
 	{
 		Employee employee= employeeLocalService.fetchEmployee(emp.getEmpId());
+		 LocalDate businessdate= LocalDate.of(2017, 01, 15);
 		
 		employee.setEmpName(emp.getEmpName());
 		employee.setGrade(emp.getGrade());
+		employee.setModifiedDate(new Date());
+		
+		if(employee.getModifiedDate().after(java.sql.Date.valueOf(businessdate)))
+		{
+			throw new InvalidDateException("Inconsistent created and modified date");
+		}
+		
 		
 		return employeePersistence.update(employee);
 	}

@@ -28,4 +28,7 @@
 		<column name="grade" type="String" />
 		
 		</entity>
+    <exceptions>
+        <exception>InvalidDate</exception>
+    </exceptions>
 </service-builder>
