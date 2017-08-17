@@ -25,7 +25,7 @@ Basic spring mvc portlet in liferay
  - The DispatcherPortlet uses HandlerMappings to determine which Controller should handle each PortletRequest.
  -  A DispatcherPortlet can use multiple HandlerMappings
  
-# Key takeaways from Spring mvc liferay portlet
+# Key take-aways from Spring mvc liferay portlet
  	
  - Namespacing of params should be disabled in liferay portlet using liferay-portlet.xml
    - 'requires-namespaced-parameters' should be set as false
@@ -36,7 +36,15 @@ Basic spring mvc portlet in liferay
  - Mapping of bean class used for user interaction and actual model class should be done appropriately
     	-In case of similar names,make sure the correct import is done
  
- 
+# Update:
+  - Defining exception in service.xml
+  	- The generated source is a checked exception
+  	- Exception should be used only to validate a certain business rule on data rather than simply
+  	  validating user input
+  	- In current case,we check if modified date is not after a certain defined business date,else the 
+  	  exception is thrown
+  	- LocalDate API from Java 8 is used which is more utilitarian in terms of available methods     
+  	    
 	  
 	  
 	  
